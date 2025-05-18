@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Grid,
   Card,
   CardContent,
   Typography,
   Chip,
   Box,
 } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { Gate } from '../types/types';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
@@ -31,7 +31,7 @@ const GateList: React.FC<GateListProps> = ({ gates }) => {
   return (
     <Grid container spacing={2}>
       {gates.map((gate) => (
-        <Grid item xs={12} sm={6} md={4} key={gate.id}>
+        <Grid xs={12} sm={6} md={4} key={gate.id}>
           <Card 
             sx={{ 
               height: '100%',

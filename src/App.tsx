@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Container, CssBaseline, ThemeProvider, createTheme, Box } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import GateFilter from './components/GateFilter';
 import GateList from './components/GateList';
+import TerminalMap from './components/TerminalMap';
 import { Gate, Filter } from './types/types';
+import AirportInfo from 'components/AirportInfo';
 
 const theme = createTheme({
   palette: {
@@ -89,15 +92,28 @@ function App() {
     });
   }, [filter]);
 
+  const GateStatusView = () => (
+    <Box sx={{ py: 4 }}>
+      <GateFilter filter={filter} onFilterChange={setFilter} />
+      <GateList gates={filteredGates} />
+    </Box>
+  );
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header />
-      <Container sx={{ py: 4 }}>
-        <GateFilter filter={filter} onFilterChange={setFilter} />
-        <GateList gates={filteredGates} />
-      </Container>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Navigate to="/gates" replace />} />
+            <Route path="/map" element={<TerminalMap />} />
+            <Route path="/gates" element={<GateStatusView />} />
+            <Route path="/info" element={<AirportInfo />} />
+          </Routes>
+        </Container>
+      </ThemeProvider>
+    </Router>
   );
 }
 
