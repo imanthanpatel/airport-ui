@@ -191,7 +191,7 @@ const AirportInfo: React.FC = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>
-        Airport Information
+        Airport Navigation
       </Typography>
       <Typography variant="subtitle1" color="textSecondary" paragraph>
         Welcome to our airport. Find all the essential information you need for a smooth travel experience.
